@@ -1,0 +1,65 @@
+/* Reset */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td{margin: 0; padding: 0; border: 0; outline: 0; font-size: 100%; vertical-align: baseline; background: transparent;}
+body {line-height: 1;}
+ol, ul {list-style: none;}
+blockquote, q {quotes: none;}
+:focus {outline: 0;}
+ins {text-decoration: none;}
+del {text-decoration: line-through;}
+table {border-collapse: collapse; border-spacing: 0;}
+/* Reset End */
+
+body
+{
+    font-size: .85em;
+    font-family: "Trebuchet MS", Verdana, Helvetica, Sans-Serif;
+    color: #232323;
+    background-color: #fff;
+}
+
+header,
+footer,
+nav,
+section {
+    display: block;
+}
+
+div#wrapper{width:960px; margin:0 auto;}
+a{color:#1BB2E0;}
+
+/* HEADER */
+header{height:150px; position:relative; background:#e1e1e1;}
+
+.navigation {position:absolute; bottom:10px; right:100px;}
+.navigation li{float:left; display:block; padding:4px 10px; position:relative;}
+.navigation li ul {
+	display:none; position:absolute; left: 0; top: 30px; width:200px; z-index:15; padding-top:10px; background-color: #f9f9f9;
+	-moz-border-radius:0 8px 8px 8px; -webkit-border-radius:0 8px 8px 8px; border-radius:0 8px 8px 8px;
+	-webkit-box-shadow: #666 2px 2px 3px; box-shadow: #666 2px 2px 3px; -moz-box-shadow: #666 2px 3px 3px;
+}
+.navigation li ul li {width: 100%; z-index:5; position:relative;}
+.navigation li:hover,.navigation li.navHover{
+	position:relative; background-color: #f9f9f9; color: #4a4a4a; 
+	-moz-border-radius:8px 8px 0 0; -webkit-border-radius:8px 8px 0 0; border-radius:8px 8px 0 0;
+    -webkit-box-shadow: #666 1px 1px 2px; -moz-box-shadow: #666 2px 1px 3px; box-shadow: #666 2px 1px 2px;
+}
+.navigation .noChild:hover, .navigation li ul li.navHover .noChild, .navigation li li:hover {
+    background:none;
+    -moz-border-radius:none; -webkit-border-radius:none; border-radius:none;
+    -webkit-box-shadow: none; -moz-box-shadow: none; box-shadow: none;
+}
+.navigation li:hover ul{display:block;}
+.navigation a{padding: 16px 26px; text-decoration: none; font-family:Verdana; font-weight:normal; font-size:1.6em; }
+/* \HEADER */
+
+
+/* Content */
+#content{width:600px; padding:20px; float:left;}
+#content h2{padding:0 0 5px 0; border-bottom:1px dashed #000; margin-bottom:5px; font-size:16px;}
+/* \Content */
+
+/* Sidebar */
+#sidebar{width:300px; padding:20px 10px; float:right;}
+#sidebar ul li a{padding:10px; display:block; width:100%;}
+#sidebar ul li.active a{background:#E9F1F7;}
+/* \Sidebar */

@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "Home";
+}
+
+<div id="content">
+    <h2>Static page</h2>
+
+    This is an example of a static page that runs off of it's own controller and using different parent's sub elements on the side menu.
+
+</div>
+
+@Html.Action("Sidebar","Pages", new { id = "aboutus" })

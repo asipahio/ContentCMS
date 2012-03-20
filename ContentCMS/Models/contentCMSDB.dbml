@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="ContentCMSDB" Class="contentCMSDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\ContentCMSDB.mdf;Integrated Security=True;User Instance=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="ContentCMSDBConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.pages" Member="pages">
+    <Type Name="page">
+      <Column Name="pageID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="pageURL" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="pageTitle" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="pageContent" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="lastUpdate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="isPublished" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="parent" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="isContent" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="isStatic" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="author" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="pageOrder" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

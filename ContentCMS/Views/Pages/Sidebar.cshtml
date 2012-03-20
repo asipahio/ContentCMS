@@ -1,0 +1,8 @@
+﻿<div id="sidebar">
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li@if(item.pageURL.EndsWith((string) ViewData["pageURL"])){  <text>class="active"</text> } ><a href="@item.pageURL">@item.pageName</a></li>
+        }
+    </ul>
+</div>
