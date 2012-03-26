@@ -20,7 +20,7 @@
 </script>
 </head>
 
-<body>
+<body id="@ViewBag.pageID">
     <div id="wrapper">
         <header>
             @Html.Action("Navigation","Pages") 
@@ -28,5 +28,7 @@
 
         @RenderBody()
     </div>
+
+    @RenderSection("footer", false)
 </body>
 </html>

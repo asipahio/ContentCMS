@@ -1,0 +1,81 @@
+﻿@{
+    ViewBag.Title = "Index";
+    ViewBag.pageID = "admin";
+}
+
+<div id="content">
+    <h2>Administration</h2>
+    <h3>Pages</h3>
+    <table class="editor" id="pages">
+        <thead>
+            <tr>
+                <td>Page Title <sub class="showhidden">(show all)</sub></td>
+                <td>Last Update</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+        @{string odd = "odd";}
+        @foreach (var pageitem in Model){ 
+            odd = odd == "odd" ? "" : "odd";
+            <tr class="@odd  @pageitem.isPublished">
+                <td><a @if(!String.IsNullOrEmpty(pageitem.pageURL)){ <text>href="@Url.Content(pageitem.pageURL)"</text> }>@pageitem.pageTitle</a></td>
+                <td>@pageitem.lastUpdate</td>
+                <td class="edit">@Html.ActionLink("Edit", "EditTemplate", new { id = pageitem.pageID })</td>
+                <td class="delete">@Html.ActionLink("Delete", "DeleteTemplate", new { id = pageitem.pageID })</td>
+            </tr>
+            foreach (var subpageitem in pageitem.subPages){
+                odd = odd == "odd" ? "" : "odd";
+                <tr class="@odd @subpageitem.isPublished child">
+                    <td class="first">&raquo; <a @if(!String.IsNullOrEmpty(subpageitem.pageURL)){ <text>href="@Url.Content(subpageitem.pageURL)"</text> }>@subpageitem.pageTitle</a></td>
+                    <td>@subpageitem.lastUpdate</td>
+                    <td class="edit">@Html.ActionLink("Edit", "EditTemplate", new { id = subpageitem.pageID })</td>
+                    <td class="delete">@Html.ActionLink("Delete", "DeleteTemplate", new { id = subpageitem.pageID })</td>
+                </tr>
+            }
+        }
+        </tbody>
+    </table>
+    <hr />
+
+</div>
+    @Html.Action("Sidebar")
+    <div class="clear"></div>
+
+
+@section footer{
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".delete").click(function () {
+            var answer = confirm("Are you sure you want to delete?");
+            if (!answer) {
+                return false;
+            }
+        });
+
+        $("#pages").find("tr").removeClass("odd");
+        $("#pages").find("tr:not(.False):odd").each(function () {
+            $(this).addClass("odd");
+        });
+
+        $(".showhidden").toggle(function () {
+            $(this).text("(show only published)");
+            $("#pages").find("tr.False").show(10, function () {
+                $("#pages").find("tr").removeClass("odd");
+                $("#pages").find("tr:odd").each(function () {
+                    $(this).addClass("odd");
+                });
+            });
+        }, function () {
+            $(this).text("(show all)");
+            $("#pages").find("tr.False").hide(10, function () {
+                $("#pages").find("tr").removeClass("odd");
+                $("#pages").find("tr:not(.False):odd").each(function () {
+                    $(this).addClass("odd");
+                });
+            });
+        });
+    });
+</script>
+}

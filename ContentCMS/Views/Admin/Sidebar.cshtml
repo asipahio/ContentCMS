@@ -1,0 +1,7 @@
+﻿<div id="sidebar">
+    <ul>
+    <li><a href="@Url.Content("~/Admin")">Admin Home</a></li>
+    <li @if (ViewData["currentView"].Equals("addtemplate"))
+                     {<text>class="active"</text>}>@Html.ActionLink("Add New Page","addtemplate")</li>
+    </ul>
+</div>

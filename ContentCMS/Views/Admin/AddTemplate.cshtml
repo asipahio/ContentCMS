@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "AddTemplate";
+    ViewBag.pageID = "addTemplate";
+}
+
+<div id="content">
+    <h2>Add Page</h2>
+
+    @Html.ValidationSummary("Please fix the following errors.",new {@class="errorBox"}) 
+    <div id="admin">
+    @using (Html.BeginForm()) {
+        Html.ValidationSummary(true);
+        <div class="clear"></div>
+        <p>
+            <label for="pageTitle">Title</label>
+            @Html.TextBox("pageTitle", null, new { @class = "text medium", id = "pageTitle" })
+        </p>
+        <p>
+            <label for="parentPageID">Parent Page</label>
+            @Html.DropDownList("parentPageID", ViewData["parentPages"] as SelectList, new { id = "parentPages" })
+        </p>
+        <p class="checkbox">
+            <label for="isPublishedCB">Publish Page</label>
+            <input type="checkbox" @if((bool) ViewData["isPublished"]){<text>checked="checked"</text>}  id="isPublishedCB" />
+            <input type="hidden" id="isPublished" name="isPublished" value="@if((bool) ViewData["isPublished"]){ <text>true</text>}else{<text>false</text>}" />
+        </p>
+        <p>
+            <label for="pageContent">Page Content</label> <br /><br /><br />
+            @Html.TextArea("pageContent", null, new { rows = "10", cols = "70", id = "pageContent" })
+        </p>
+        <p>
+            <input type="submit" name="update" id="update" value="Update" class="btn cupid-green" tabindex="3" />
+        </p>
+    } 
+    </div>
+</div>
+@Html.Action("Sidebar")
+
+@section footer{
+<script type="text/javascript">
+    $("#isPublishedCB").change(function () {
+        if ($(this).is(":checked")) {
+            $("#isPublished").val("true");
+        } else {
+            $("#isPublished").val("false");
+        }
+    });
+</script>
+}
