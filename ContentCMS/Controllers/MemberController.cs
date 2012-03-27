@@ -52,5 +52,10 @@ namespace ContentCMS.Controllers
             return View();
         }
 
+        public ActionResult Logout(string returnURL)
+        {
+            FormsAuthentication.SignOut();
+            return Redirect("/");
+        }
     }
 }

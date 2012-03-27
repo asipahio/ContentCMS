@@ -4,23 +4,36 @@
 
 IEnumerable<ContentCMS.Models.Pages.pageLinks> subpages = item.subPages; 
 
-<li@if (!subpages.Any()){  <text>class="noChild"</text> }>
+    <li@if (!subpages.Any()){  <text>class="noChild"</text> }>
 
-    <a @if(item.pageURL != null){  <text>href="@item.pageURL"</text> }>@item.pageName</a>
+        <a @if(item.pageURL != null){  <text>href="@item.pageURL"</text> }>@item.pageName</a>
 
-    @if (subpages.Any()){
+        @if (subpages.Any()){
     
-        <img src="@Url.Content("~/Content/images/menu-arrow.png")" alt="More" />
+            <img src="@Url.Content("~/Content/images/menu-arrow.png")" alt="More" />
 
-        <ul>
-        @foreach(var subPage in item.subPages){
-            <li><a href="@subPage.pageURL">@subPage.pageName</a></li>
+            <ul>
+            @foreach(var subPage in item.subPages){
+                <li><a href="@subPage.pageURL">@subPage.pageName</a></li>
+            }
+            </ul>
+
         }
+    
+    </li>
+
+}
+@if (User.Identity.IsAuthenticated)
+{
+    <li><a>User</a> <img src="@Url.Content("~/Content/images/menu-arrow.png")" alt="More" />
+        <ul>
+            <li><a href="@Url.Content("~/Admin/")">Admin</a></li>
+            <li><a href="@Url.Content("~/Member/Logout")">Logout</a></li>
         </ul>
-
-    }
-
-</li>
-
+    </li>    
+}
+else
+{
+    <li class="noChild"><a href="@Url.Content("~/Member/Login")">Login</a></li>
 }
 </ul>
