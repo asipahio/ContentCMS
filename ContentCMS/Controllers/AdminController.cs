@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 
 namespace ContentCMS.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         contentCMSDBDataContext db = new contentCMSDBDataContext();

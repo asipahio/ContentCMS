@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Login";
+    ViewBag.pageID = "login";
+}
+
+@Html.ValidationSummary("Please fix the following errors.",new {@class="errorBox"})
+@using (Html.BeginForm("Login", "Member"))
+{
+    <p>
+        <label for="username">Username</label>  
+        @Html.TextBox("username", null, new { @id = "username", tabindex = "1", @class="text medium" })
+    </p>
+    <p>
+        <label for="password">Password</label>  
+        @Html.Password("password", null, new { @id = "password", tabindex = "2", @class = "text medium" })
+    </p>
+    <p>
+        <input type="hidden" name="returnURL" value="@ViewData["returnURL"]" />
+        <input type="submit" name="submit" id="submit1" value="Login" class="btn cupid-green" tabindex="3" />
+    </p>
+}
