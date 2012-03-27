@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using ContentCMS.Models;
 using System.Text.RegularExpressions;
+using System.Web.Security;
 
 namespace ContentCMS.Controllers
 {
@@ -88,7 +89,8 @@ namespace ContentCMS.Controllers
                 isStatic = false,
                 pageContent = pageContent,
                 pageTitle = pageTitle,
-                pageURL = pageURL
+                pageURL = pageURL,
+                author = (Guid) Membership.GetUser().ProviderUserKey
             };
 
             db.pages.InsertOnSubmit(pageToAdd);
@@ -153,6 +155,8 @@ namespace ContentCMS.Controllers
                 cachedPage.pageURL = pageURL;
             }
 
+            var user = Membership.GetUser();
+
             var pagetocache = new Models.page();
             pagetocache.lastUpdate = pageoriginal.lastUpdate;
             pagetocache.pageContent = pageoriginal.pageContent;
@@ -161,9 +165,7 @@ namespace ContentCMS.Controllers
             pagetocache.isPublished = false;
             pagetocache.pageOrder = pageoriginal.pageOrder;
             pagetocache.parent = (int)pagetoedit.parentPageID;
-            
-            //Need to implement the the asp.net user guid to the pages table
-            //pagetocache.author = userguid; 
+            pagetocache.author = pageoriginal.author; 
 
             db.pages.InsertOnSubmit(pagetocache);
 
@@ -174,9 +176,7 @@ namespace ContentCMS.Controllers
             pageoriginal.parent = (int)pagetoedit.parentPageID;
             pageoriginal.pageOrder = pagetoedit.page.pageOrder;
             pageoriginal.lastUpdate = DateTime.Now;
-
-            //Need to implement the the asp.net user guid to the pages table
-            //pageoriginal.author = userguid; 
+            pageoriginal.author = (Guid) user.ProviderUserKey;  
 
             db.SubmitChanges();
 
@@ -193,16 +193,19 @@ namespace ContentCMS.Controllers
             temppage.pageContent = pageoriginal.pageContent;
             temppage.pageTitle = pageoriginal.pageTitle;
             temppage.pageURL = pageoriginal.pageURL;
+            temppage.author = pageoriginal.author;
 
             pageoriginal.lastUpdate = DateTime.Now;
             pageoriginal.pageContent = pagecached.pageContent;
             pageoriginal.pageTitle = pagecached.pageTitle;
             pageoriginal.pageURL = pagecached.pageURL;
+            pageoriginal.author = pagecached.author;
 
             pagecached.lastUpdate = temppage.lastUpdate;
             pagecached.pageContent = temppage.pageContent;
             pagecached.pageTitle = temppage.pageTitle;
             pagecached.pageURL = temppage.pageURL;
+            pagecached.author = temppage.author;
             db.SubmitChanges();
 
 
