@@ -33,7 +33,7 @@ header{height:150px; position:relative; border-bottom:2px solid #e1e1e1;}
 .navigation {position:absolute; bottom:10px; right:100px;}
 .navigation li{float:left; display:block; padding:10px; position:relative;}
 .navigation li ul {
-	display:none; position:absolute; left: 0; top: 30px; width:150px; z-index:15; padding-top:3px; background-color: #EEE;
+	display:none; position:absolute; left: 0; top: 30px; width:175px; z-index:15; padding-top:3px; background-color: #EEE;
 	-moz-border-radius:0 6px 6px; -webkit-border-radius:0 6px 6px; border-radius:0 6px 6px;
 	-webkit-box-shadow: #D6D6D6 2px 2px 3px; box-shadow: #D6D6D6 2px 2px 3px; -moz-box-shadow: #D6D6D6 2px 3px 3px;
 }
