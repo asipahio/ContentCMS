@@ -29,7 +29,7 @@ a{color:#000; font-weight:bold;}
 
 /* HEADER */
 header{height:150px; position:relative; border-bottom:2px solid #e1e1e1;}
-
+header h1{padding-top:20px; font-size:36px;}
 .navigation {position:absolute; bottom:10px; right:100px;}
 .navigation li{float:left; display:block; padding:10px; position:relative;}
 .navigation li ul {
